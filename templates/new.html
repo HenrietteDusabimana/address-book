@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'style-edit.css' %}"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/6b20b1c14d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      function InvalidPhone(textbox) {
+        if (textbox.value == "") {
+          textbox.setCustomValidity("Please enter your phone number");
+        } else if (textbox.value.length == 10) {
+          textbox.setCustomValidity("");
+        } else if (textbox.value.length == 12) {
+          textbox.setCustomValidity("");
+        } else if (textbox.value.length == 13) {
+          textbox.setCustomValidity("");
+        } else {
+          textbox.setCustomValidity("Please enter a valid phone number");
+        }
+        return true;
+      }
+    </script>
+
+    <script type="text/javascript">
+      function InvalidEmail(textbox) {
+        const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (textbox.value == "") {
+          textbox.setCustomValidity("Please enter your email address");
+        } else if (re.test(String(textbox.value).toLowerCase())) {
+          textbox.setCustomValidity("");
+        } else {
+          textbox.setCustomValidity("Please enter a valid email address");
+        }
+        return true;
+      }
+    </script>
+    <title>New Contact</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="hero">
+        <a href="{% url 'index' %}">
+          <i class="fas fa-chevron-circle-left back-btn"></i>
+        </a>
+
+        <div class="hero-info">
+          <h1 class="name">New Contact</h1>
+        </div>
+      </header>
+
+      <form action="" method="POST">
+        {% csrf_token %}
+        <section class="contact-info">
+          <div class="info-line">
+            <i class="fas fa-user icon-gradient"></i>
+            <input
+              type="text"
+              class="type"
+              name="first-name"
+              placeholder="First Name"
+            />
+          </div>
+
+          <div class="info-line">
+            <i class="fas fa-user icon-gradient"></i>
+            <input
+              type="text"
+              class="type"
+              name="last-name"
+              placeholder="Last Name"
+            />
+          </div>
+
+          <div class="info-line">
+            <i class="fas fa-phone icon-gradient"></i>
+            <input
+              type="text"
+              class="type"
+              name="phone-number"
+              placeholder="Phone Number"
+              oninvalid="InvalidPhone(this);"
+              oninput="InvalidPhone(this);"
+            />
+          </div>
+
+          <div class="info-line">
+            <i class="fas fa-envelope icon-gradient location"></i>
+            <input
+              required
+              type="email"
+              class="type"
+              name="email"
+              placeholder="Email"
+              oninvalid="InvalidEmail(this);"
+              oninput="InvalidEmail(this);"
+            />
+          </div>
+        </section>
+
+        <section class="button-container">
+          <div class="update-contact">
+            <i id="save" class="fas fa-check-circle icon-gradient"></i>
+            <button type=" submit" class="button">Save Contact</button>
+          </div>
+        </section>
+      </form>
+      <section class="button-container">
+        <div class="update-contact">
+          <a href="{% url 'index' %}">
+            <i class="fas fa-times-circle cancel-icon"></i>
+            <button type=" submit" class="cancel-button">Cancel</button>
+          </a>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
