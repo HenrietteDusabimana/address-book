@@ -186,18 +186,14 @@
               oninput="InvalidPhone(this);"
             />
           </div>
-          <form action="#" method="get">
-            <span id="cyazephone"></span>
-          </form>
+          <span id="cyazephone"></span>
 
           <div class="info-line">
-            <a href="{% url 'add-contact'  %}"
-              ><i class="fas fa-plus add"></i
-            ></a>
+            <a href="/"><i class="fas fa-plus add"></i></a>
             <input
               type="text"
               class="type"
-              name="phone-number"
+              name="other-phone-number"
               placeholder="Add Phone Number"
               onclick="addPhone()"
             />
@@ -216,18 +212,14 @@
             />
           </div>
 
-          <form action="#" method="get">
-            <span id="cyazeemail"></span>
-          </form>
+          <span id="cyazeemail"></span>
 
           <div class="info-line">
-            <a href="{% url 'add-contact'  %}"
-              ><i class="fas fa-plus add"></i
-            ></a>
+            <a href="/"><i class="fas fa-plus add"></i></a>
             <input
               type="email"
               class="type"
-              name="email"
+              name="other-email"
               placeholder="Add email"
               onclick="addEmail()"
             />

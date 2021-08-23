@@ -3,4 +3,3 @@ from .models import Contacts
 
 # Register your models here.
 admin.site.register(Contacts)
-# admin.site.register(PhoneNumber)

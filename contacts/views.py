@@ -14,6 +14,7 @@ def index(request):
         search_results = search_results | contacts
     else:
         contacts = Contacts.objects.order_by('first_name')
+        search_results = contacts
         search_input = ''
     return render(request, 'index.html', {'contacts': search_results, 'search_input': search_input})
 
