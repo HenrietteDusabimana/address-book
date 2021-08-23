@@ -171,3 +171,14 @@ p {
   padding: 0.5em;
   cursor: pointer;
 }
+
+#cyaze {
+  display: none;
+  /* display: flex; */
+  width: 90%;
+  margin: 0 auto;
+  padding: 0.5em 2em;
+  margin-top: 1em;
+  border-radius: 20px;
+  box-shadow: inset 6px 6px 12px #2d2f33, inset -6px -6px 12px #35393d;
+}

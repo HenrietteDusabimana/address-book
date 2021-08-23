@@ -21,6 +21,7 @@
       src="https://kit.fontawesome.com/6b20b1c14d.js"
       crossorigin="anonymous"
     ></script>
+
     <script type="text/javascript">
       function InvalidPhone(textbox) {
         if (textbox.value == "") {
@@ -36,9 +37,7 @@
         }
         return true;
       }
-    </script>
 
-    <script type="text/javascript">
       function InvalidEmail(textbox) {
         const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (textbox.value == "") {
@@ -49,6 +48,94 @@
           textbox.setCustomValidity("Please enter a valid email address");
         }
         return true;
+      }
+
+      var i = 0;
+      function increment() {
+        i += 1;
+      }
+
+      function removeElement(parentDiv, childDiv) {
+        if (childDiv == parentDiv) {
+          alert("The parent div cannot be removed.");
+        } else if (document.getElementById(childDiv)) {
+          var child = document.getElementById(childDiv);
+          var parent = document.getElementById(parentDiv);
+          parent.removeChild(child);
+        } else {
+          alert("Child div has already been removed or does not exist.");
+          return false;
+        }
+      }
+
+      function addEmail() {
+        var r = document.createElement("div");
+        var z = document.createElement("i");
+        var u = document.createElement("input");
+        z.setAttribute("class", "fas fa-envelope icon-gradient");
+        z.setAttribute("aria-hidden", "false");
+        r.appendChild(z);
+
+        u.setAttribute("type", "email");
+        u.setAttribute("class", "type");
+        u.setAttribute("name", "email");
+        u.setAttribute("placeholder", "Add other email");
+        u.setAttribute("oninvalid", "InvalidEmail(this);");
+        u.setAttribute("oninput", "InvalidEmail(this);");
+        r.appendChild(u);
+        console.log(r);
+
+        increment();
+        r.setAttribute("id", "id_" + i);
+        r.setAttribute(
+          "style",
+          "\
+              display: flex;\
+              width: 90%;\
+              margin: 0 auto;\
+              padding: 0.5em 2em;\
+              margin-top: 1em;\
+              border-radius: 20px;\
+              box-shadow: inset 6px 6px 12px #2d2f33,\
+                inset -6px -6px 12px #35393d;\
+            "
+        );
+        document.getElementById("cyazeemail").appendChild(r);
+      }
+
+      function addPhone() {
+        var r = document.createElement("div");
+        var z = document.createElement("i");
+        var u = document.createElement("input");
+        z.setAttribute("class", "fas fa-phone icon-gradient");
+        z.setAttribute("aria-hidden", "false");
+        r.appendChild(z);
+
+        u.setAttribute("type", "text");
+        u.setAttribute("class", "type");
+        u.setAttribute("name", "phone-number");
+        u.setAttribute("placeholder", "Add other phone");
+        u.setAttribute("oninvalid", "InvalidPhone(this);");
+        u.setAttribute("oninput", "InvalidPhone(this);");
+        r.appendChild(u);
+        console.log(r);
+
+        increment();
+        r.setAttribute("id", "id_" + i);
+        r.setAttribute(
+          "style",
+          "\
+              display: flex;\
+              width: 90%;\
+              margin: 0 auto;\
+              padding: 0.5em 2em;\
+              margin-top: 1em;\
+              border-radius: 20px;\
+              box-shadow: inset 6px 6px 12px #2d2f33,\
+                inset -6px -6px 12px #35393d;\
+            "
+        );
+        document.getElementById("cyazephone").appendChild(r);
       }
     </script>
 
@@ -107,6 +194,23 @@
             />
           </div>
 
+          <form action="#" method="get">
+            <span id="cyazephone"></span>
+          </form>
+
+          <div class="info-line">
+            <a href="{% url 'add-contact'  %}"
+              ><i class="fas fa-plus add"></i
+            ></a>
+            <input
+              type="text"
+              class="type"
+              name="phone-number"
+              placeholder="Add Phone Number"
+              onclick="addPhone()"
+            />
+          </div>
+
           <div class="info-line">
             <i class="fas fa-envelope icon-gradient"></i>
             <input
@@ -119,6 +223,22 @@
               oninput="InvalidEmail(this);"
               title="Please enter a valid email address"
               value="{{contact.email}}"
+            />
+          </div>
+          <form action="#" method="get">
+            <span id="cyazeemail"></span>
+          </form>
+
+          <div class="info-line">
+            <a href="{% url 'add-contact'  %}"
+              ><i class="fas fa-plus add"></i
+            ></a>
+            <input
+              type="email"
+              class="type"
+              name="email"
+              placeholder="Add email"
+              onclick="addEmail()"
             />
           </div>
         </section>
